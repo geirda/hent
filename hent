@@ -42,6 +42,7 @@ NetBSD)
 	cyan="${reset}${bold}${color6}"
 	white="${reset}${bold}${color7}"
 	PAKKER=$(pkgin list|wc -l|awk '{print $1}')
+	KJERNE="$(uname -v|awk '{print $2 " " $3 " " $4}'|sed 's/[:]//g')"
 	MINNE="$(top -d 1|awk '/Mem/{print $2}') / $(awk '/total memory/{print $4}' /var/run/dmesg.boot)M"
 	;;
 *BSD)
@@ -141,11 +142,11 @@ esac
 
 case "$OS" in
 *BSD)
-	line1='████   ███ ███  '
-	line2='█   █ █    █  █ '
-	line3='████  ████ █  ██'
-	line4='█   █    █ █  █ '
-	line5='████  ███  ███  '
+	line1='####   ### ### '
+	line2='#   # #    #  #'
+	line3='####   ##  #  #'
+	line4='#   #    # #  #'
+	line5='####  ###  ### '
 	echo "$red $line1  $blue$USER$fg@$green$(hostname -s)"
 	echo "$red $line2 $purple os     $fg$OS"
 	echo "$red $line2 $purple kernel $fg$KJERNE"
