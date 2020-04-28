@@ -66,6 +66,7 @@ NetBSD)
 	purple="${reset}${bold}${color5}"
 	cyan="${reset}${bold}${color6}"
 	white="${reset}${bold}${color7}"
+	[ -n "$(grep -i ghostbsd /boot/loader.conf)" ] && OS="GhostBSD"
 	PAKKER=$(pkg info|wc -l|awk '{print $1}')
 	MINNE="$(top -d 1|awk '/Mem/{print $2}') / $(awk '/real memory/{print $5}' /var/run/dmesg.boot|cut -b2-)M"
 	;;
