@@ -112,15 +112,16 @@ Linux)
 	purple="${reset}${bold}${color5}"
 	cyan="${reset}${bold}${color6}"
 	white="${reset}${bold}${color7}"
-	[ -f /etc/os-release ] && OS="$(head -1 /etc/os-release|cut -b6-|sed -e 's/\"//g') $(grep 'VERSION_ID=' /etc/os-release|cut -b12-)"
+	[ -f /etc/os-release ] && OS="$(head -1 /etc/os-release|cut -d "=" -f2-|sed -e 's/\"//g') $(grep 'VERSION_ID=' /etc/os-release|cut -d "=" -f2-|sed -e 's/\"//g')"
 	[ -x "$(command -v lsb_release)" ] && OS=$(lsb_release -sd|sed -e 's/\"//g')
+	[ -x "$(command -v apk)" ] && PAKKER=$(apk list|grep installed|wc -l)
 	[ -x "$(command -v pacman)" ] && PAKKER=$(pacman -Q|wc -l)
 	[ -x "$(command -v dpkg)" ] && PAKKER=$(dpkg --get-selections|wc -l)
 	[ -x "$(command -v rpm)" ] && PAKKER=$(rpm -qa|wc -l)
 	[ -x "$(command -v eopkg)" ] && PAKKER=$(ls /var/lib/eopkg/package|wc -l)
 	[ -x "$(command -v xbps-query)" ] && PAKKER=$(xbps-query -l|wc -l)
 	MINNE="$(free -m|awk '/Mem:/{print $3 "M / " $2}')M"
-	OPPETID="$(uptime -p | sed 's/up //')"
+	[ "$(grep "ID=" /etc/os-release|grep -v VERSION|cut -d "=" -f2-)" = "alpine" ] || OPPETID="$(uptime -p | sed 's/up //')"
 	;;
 esac
 
