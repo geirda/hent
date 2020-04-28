@@ -10,4 +10,4 @@ Works with:
 
 * FreeBSD, NetBSD, OpenBSD
 
-* macOS (tested with 10.14, only displays packages installed by brew)
+* macOS (tested with 10.14, only displays packages installed with brew)
