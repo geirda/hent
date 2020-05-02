@@ -123,7 +123,8 @@ Linux)
 	[ -x "$(command -v xbps-query)" ] && PAKKER=$(xbps-query -l|wc -l)
 	VERT=$(hostname)
 	MINNE="$(free -m|awk '/Mem:/{print $3 "M / " $2}')M"
-	[ "$(grep "ID=" /etc/os-release|grep -v VERSION|cut -d "=" -f2-)" = "alpine" ] || OPPETID="$(uptime -p | sed 's/up //')"
+	[ "$(uname -o)" = "Android" ] && OS=Android
+	[ "$OS" = "Android" ] || [ "$(grep "ID=" /etc/os-release|grep -v VERSION|cut -d "=" -f2-)" = "alpine" ] || OPPETID="$(uptime -p | sed 's/up //')"
 	;;
 esac
 
