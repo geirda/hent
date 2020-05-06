@@ -3,7 +3,6 @@
 OS=$(uname)
 VERT=$(hostname -s)
 KJERNE=$(uname -r)
-OPPETID="$(uptime|cut -f 1,2 -d','|sed 's/^.*up\ //')"
 
 case "$OS" in
 OpenBSD)
@@ -124,7 +123,6 @@ Linux)
 	VERT=$(hostname)
 	MINNE="$(free -m|awk '/Mem:/{print $3 "M / " $2}')M"
 	[ "$(uname -o)" = "Android" ] && OS=Android
-	[ "$OS" = "Android" ] || [ "$(grep "ID=" /etc/os-release|grep -v VERSION|cut -d "=" -f2-)" = "alpine" ] || OPPETID="$(uptime -p | sed 's/up //')"
 	;;
 esac
 
@@ -176,7 +174,7 @@ echo "$line1$blue $USER$fg@$green$VERT"
 echo "$line2$purple os     $fg$OS"
 echo "$line3$purple kernel $fg$KJERNE"
 echo "$line4$purple shell  $fg$SKALL"
-echo "$line5$purple pkgs   $fg$PAKKER"
-echo "$line6$purple uptime $fg$OPPETID"
+echo "$line5$purple term   $fg$TERM"
+echo "$line6$purple pkgs   $fg$PAKKER"
 echo "$line7$purple memory $fg$MINNE"
 echo "$fg"
