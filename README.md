@@ -6,7 +6,7 @@ Displays a penguin logo for Linux, "BSD" for BSDs and an apple for macOS.
 
 Works with:
 
-* Alpine, Arch, Debian, Fedora, Solus, Ubuntu, Void
+* Alpine, Arch, Debian, Fedora, Gentoo, Solus, Ubuntu, Void
 
 * FreeBSD, NetBSD, OpenBSD
 
