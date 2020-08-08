@@ -114,6 +114,7 @@ Linux)
 	white="${reset}${bold}${color7}"
 	[ -f /etc/os-release ] && OS="$(head -1 /etc/os-release|cut -d "=" -f2-|sed -e 's/\"//g') $(grep 'VERSION_ID=' /etc/os-release|cut -d "=" -f2-|sed -e 's/\"//g')"
 	[ -x "$(command -v lsb_release)" ] && OS=$(lsb_release -sd|sed -e 's/\"//g')
+	[ -x "$(command -v emerge)" ] && PAKKER=$(ls -d /var/db/pkg/*/*|wc -l)
 	[ -x "$(command -v apk)" ] && PAKKER=$(apk list|grep installed|wc -l)
 	[ -x "$(command -v pacman)" ] && PAKKER=$(pacman -Q|wc -l)
 	[ -x "$(command -v dpkg)" ] && PAKKER=$(dpkg --get-selections|wc -l)
